@@ -18,16 +18,13 @@ void main() {
   for (final object in flybyObjects) {
     print(object);
   }
-
-  for (int month = 1; month <= 12; month++) {
-    print(month);
-  }
-
-   var fib10 = fibonacci(10);
-   print(fib10);
+  print('*** filtered ****');
+  flybyObjects.where((name) => name.endsWith('r')).forEach(print);
 }
 
-int fibonacci(int n){
-  if(n == 0 || n == 1) return n;
+
+/// A function that returns the fibonacci number for a given input
+int fibonacci(int n) {
+  if (n == 0 || n == 1) return n;
   return fibonacci(n - 1) + fibonacci(n - 2);
 }
