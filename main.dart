@@ -11,23 +11,14 @@ void main() {
     'url': 'https://google.com'
   };
 
-  if (year >= 2001) {
-    print('21st century');
-  } else if (year >= 1901) {
-    print('20th century');
-  }
 
-  for (final object in flybyObjects) {
-    print(object);
-  }
-  print('*** filtered ****');
-  flybyObjects.where((name) => name.endsWith('r')).forEach(print);
+}
 
-  var voyager = Spacecraft('Voyager I', DateTime(1977, 9, 5));
-  voyager.describe();
 
-  var voyager3 = Spacecraft.unlaunched("Voyager III");
-  voyager3.describe();
+enum PlanetType {
+  terrestrial,
+  gas, 
+  ice
 }
 
 /// A function that returns the fibonacci number for a given input
