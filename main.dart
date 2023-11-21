@@ -1,9 +1,18 @@
 import 'dart:math';
 
-void main() {
-  DescribeChildren dc = DescribeChildren();
-  dc.describeWithEmphasis();
+ void main() async {
+  print('hi');
+  await printWithDelay('I love to know you');
+  print('bye');
 }
+
+const oneSecond = Duration(seconds: 2);
+
+Future<void> printWithDelay(String message) async {
+  await Future.delayed(oneSecond);
+  print(message);
+}
+
 
 // class MockSpaceship implements Spacecraft {
 //   DateTime? launchDate = DateTime(2023, 20, 10);
