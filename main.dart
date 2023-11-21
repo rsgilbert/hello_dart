@@ -11,15 +11,36 @@ void main() {
     'url': 'https://google.com'
   };
 
+  final Planet myPlanet = Planet.earth;
+  if(myPlanet.isGiant) {
+  print('My planet is a giant');
+  }
+  else {
+    print('My planet is not a giant');
+  }
+}
+
+enum Planet {
+  mercury(planetType: PlanetType.terrestrial, moons: 0, hasRings: false),
+  venus(planetType: PlanetType.terrestrial, moons: 0, hasRings: false),
+  earth(planetType: PlanetType.terrestrial, moons: 1, hasRings: false),
+  uranus(planetType: PlanetType.ice, moons: 27, hasRings: true),
+  neptune(planetType: PlanetType.ice, moons: 14, hasRings: true);
+
+  const Planet(
+      {required this.planetType, required this.moons, required this.hasRings});
+
+  final PlanetType planetType;
+  final int moons;
+  final bool hasRings;
+
+  /// Enhanced enums support getters and other methods
+  bool get isGiant => planetType == PlanetType.gas || planetType == PlanetType.ice;
+
 
 }
 
-
-enum PlanetType {
-  terrestrial,
-  gas, 
-  ice
-}
+enum PlanetType { terrestrial, gas, ice }
 
 /// A function that returns the fibonacci number for a given input
 int fibonacci(int n) {
