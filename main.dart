@@ -1,23 +1,35 @@
 import 'dart:math';
 
 void main() {
-  var name = 'Voyager I';
-  var year = 1977;
-  var antennaDiameter = 3.7;
-  var flybyObjects = ['Jupiter', 'Saturn', 'Uranus', 'Neptune'];
 
-  var image = {
-    'tags': ['saturn'],
-    'url': 'https://google.com'
-  };
+  Orbiter orb1 = Orbiter('Vanguard', DateTime.now(), 10);
+  print(orb1);
+  print(orb1.altitude);
 
-  final Planet myPlanet = Planet.earth;
-  if(myPlanet.isGiant) {
-  print('My planet is a giant');
+  PilotedCraft pc = PilotedCraft('Boeing', DateTime(2023,10,10));
+  pc.describe();
+}
+
+mixin Piloted {
+  int astronauts = 1;
+  void describeCrew() {
+    print('Number of astronauts: $astronauts');
   }
-  else {
-    print('My planet is not a giant');
+}
+
+class PilotedCraft extends Spacecraft with Piloted {
+  PilotedCraft(super.name, super.launchDate);
+
+  describe() {
+    super.describe();
+    super.describeCrew();
   }
+}
+
+class Orbiter extends Spacecraft {
+  double altitude ;
+
+  Orbiter(super.name, DateTime super.launchDated, this.altitude);
 }
 
 enum Planet {
@@ -36,8 +48,6 @@ enum Planet {
 
   /// Enhanced enums support getters and other methods
   bool get isGiant => planetType == PlanetType.gas || planetType == PlanetType.ice;
-
-
 }
 
 enum PlanetType { terrestrial, gas, ice }
