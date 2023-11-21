@@ -1,13 +1,28 @@
 import 'dart:math';
 
 void main() {
+  DescribeChildren dc = DescribeChildren();
+  dc.describeWithEmphasis();
+}
 
-  Orbiter orb1 = Orbiter('Vanguard', DateTime.now(), 10);
-  print(orb1);
-  print(orb1.altitude);
+// class MockSpaceship implements Spacecraft {
+//   DateTime? launchDate = DateTime(2023, 20, 10);
+// }
 
-  PilotedCraft pc = PilotedCraft('Boeing', DateTime(2023,10,10));
-  pc.describe();
+class DescribeChildren extends Describable {
+  void describe() {
+    print("Children are cute!");
+  }
+}
+
+abstract class Describable {
+  void describe();
+
+  void describeWithEmphasis() {
+    print("==================");
+    describe();
+    print('==================');
+  }
 }
 
 mixin Piloted {
