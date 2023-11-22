@@ -1,10 +1,29 @@
+import 'dart:io';
 import 'dart:math';
 
  void main() async {
-  print('hi');
-  await printWithDelay('I love to know you');
-  print('bye');
+  var names = ['James', 'Madison', 'Peter'];
+  createDescriptions(names);
+  print('Done');
 }
+
+Future<void> createDescriptions(Iterable<String> objects) async {
+  for(final object in objects) {
+    try {
+      var file = File('$object.txt');
+      if(await file.exists()) {
+        var modified = await file.lastModified();
+        print('File for $object already exists. It was last modified on $modified');
+        continue;
+      }
+      await file.create();
+      await file.writeAsString('Start describing $object in this file');
+    } on IOException catch(e) {
+      print('Can not create description for $object: $e');
+    }
+  }
+}
+
 
 const oneSecond = Duration(seconds: 2);
 
