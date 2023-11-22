@@ -1,29 +1,46 @@
 import 'dart:io';
 import 'dart:math';
 
- void main() async {
-  var names = ['James', 'Madison', 'Peter'];
-  createDescriptions(names);
+void main() async {
+  void mm() {
+    print('I am mobile money');
+  }
+
+  // var names = ['James', 'Madison', 'Peter'];
+  List<String>? names = null;
+ names = [if(true) 'Yes' else 'No', 'James', 'Madison', 'Peter'];
+
+
+  try {
+    if (names!.length == 0) {
+      throw StateError('names list is not empty right now');
+    }
+    print('names list is how I want it!');
+  } on TypeError catch (e) {
+    print('Could not go along, $e, ${e.stackTrace}');
+  }
+  mm();
+  print(names);
   print('Done');
 }
 
 Future<void> createDescriptions(Iterable<String> objects) async {
-  for(final object in objects) {
+  for (final object in objects) {
     try {
       var file = File('$object.txt');
-      if(await file.exists()) {
+      if (await file.exists()) {
         var modified = await file.lastModified();
-        print('File for $object already exists. It was last modified on $modified');
+        print(
+            'File for $object already exists. It was last modified on $modified');
         continue;
       }
       await file.create();
       await file.writeAsString('Start describing $object in this file');
-    } on IOException catch(e) {
+    } on IOException catch (e) {
       print('Can not create description for $object: $e');
     }
   }
 }
-
 
 const oneSecond = Duration(seconds: 2);
 
@@ -31,7 +48,6 @@ Future<void> printWithDelay(String message) async {
   await Future.delayed(oneSecond);
   print(message);
 }
-
 
 // class MockSpaceship implements Spacecraft {
 //   DateTime? launchDate = DateTime(2023, 20, 10);
@@ -70,7 +86,7 @@ class PilotedCraft extends Spacecraft with Piloted {
 }
 
 class Orbiter extends Spacecraft {
-  double altitude ;
+  double altitude;
 
   Orbiter(super.name, DateTime super.launchDated, this.altitude);
 }
@@ -90,7 +106,8 @@ enum Planet {
   final bool hasRings;
 
   /// Enhanced enums support getters and other methods
-  bool get isGiant => planetType == PlanetType.gas || planetType == PlanetType.ice;
+  bool get isGiant =>
+      planetType == PlanetType.gas || planetType == PlanetType.ice;
 }
 
 enum PlanetType { terrestrial, gas, ice }
