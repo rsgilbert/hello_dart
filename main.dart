@@ -8,8 +8,7 @@ void main() async {
 
   // var names = ['James', 'Madison', 'Peter'];
   List<String>? names = null;
- names = [if(true) 'Yes' else 'No', 'James', 'Madison', 'Peter'];
-
+  names = [if (false) 'Yes', 'James', 'Madison', 'Peter'];
 
   try {
     if (names!.length == 0) {
